@@ -242,7 +242,7 @@ sudo npm install -g http-server
 Then you can start your own development web server to serve static files from any folder by running:
 
 ```
-http-server -a localhost -p 8000
+http-server -a localhost -p 8080
 ```
 
 Alternatively, you can choose to configure your own web server, such as Apache or Nginx. Just

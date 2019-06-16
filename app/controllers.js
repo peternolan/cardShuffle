@@ -35,29 +35,41 @@ angular.module('cardShuffle.controllers', []).controller('cardsController', func
     $scope.cardList = deck;
 
     $scope.shuffle = function () {
-        let deck = $scope.cardList;
-        let deckLeft = [];
-        let deckRight = [];
-        let finalDeck = [];
-        for (let i = 0; i < deck.length/2; i++) {
-            deckLeft[i] = deck[i];
-        }
-        for (let j = deck.length/2; j < deck.length; j++) {
-            deckRight[j] = deck[j];
-        }
 
+        let finalDeck = [];
         for (let k = 0; k < 7; k++) {
             let right = 0;
             let left = 0;
+            let deck = $scope.cardList;
+            let deckLeft = [];
+            let deckRight = [];
+
+            console.log(deck.length);
+            for (let i = 0; i < deck.length/2; i++) {
+
+                deckLeft.push(deck[i]);
+                console.log(deckLeft[i]);
+            }
+            for (let j = deck.length/2; j < deck.length; j++) {
+                var x = 0;
+
+                deckRight.push(deck[j]);
+                console.log(deckRight[x]);
+                x++;
+            }
+
             for (let n = 0; n < 52; n++) {
                 if (n % 2 === 0) {
-                    finalDeck.push(deckRight[right]);
+                    finalDeck[n] = deckRight[right];
+                    right++;
                 }
                 else {
-                    finalDeck.push(deckLeft[left]);
+                    finalDeck[n] = deckLeft[left];
+                    left++;
                 }
             }
         }
+
         $scope.cardList = finalDeck;
     };
 });
