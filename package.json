@@ -9,6 +9,9 @@
     "angular": "^1.7.5",
     "angular-loader": "^1.7.5",
     "angular-route": "^1.7.5",
+    "braces": "^2.3.1",
+    "ecstatic": "^3.3.2",
+    "estatic": "0.0.2",
     "html5-boilerplate": "0.0.1"
   },
   "devDependencies": {
