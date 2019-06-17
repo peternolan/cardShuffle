@@ -2,19 +2,14 @@
 
 // Declare app level module which depends on views, and core components
 angular.module('cardShuffle.controllers', []).controller('cardsController', function ($scope) {
-
     //Create each Suit for the deck
-    let suits = ["Heart", "Spade", "Diamond", "Club"];
-    let deck = [];//Array that will hold the deck
-
+    var suits = ["hearts", "spades", "diamonds", "clubs"];
+    var deck = [];//Array that will hold the deck
     //In this for loop, we set the initial deck, with the cards in order according to the above list, suits/
     for (let i = 0; i < suits.length; i++) {
-
         //For each suit, we prepare 13 cards, Ace-King
         for (let j = 1; j <= 13; j++) {
-
             let faceWord = "NA"; //The current face value of the cards.
-
             //Depending on the current value of j, provide the current face value.
             if (j === 1) {
                 faceWord = "Ace";
@@ -34,13 +29,17 @@ angular.module('cardShuffle.controllers', []).controller('cardsController', func
                 Card : {
                     suit: suits[i],
                     value: j,
-                    face: faceWord
+                    face: faceWord,
+                    imgSrc: (faceWord!=="NA") ?
+                        "content/cards/"+faceWord+"_of_"+suits[i]+".png"
+                        : "content/cards/"+j+"_of_"+suits[i]+".png",
                 }
             });
         }
     }
+
     $scope.cardList = deck; //This will be the link that connects the UI to the card list.
-    let origDeck = deck;//Keep the original deck aside, in case we want to reset the current deck.
+    var origDeckArr = deck;//Keep the original deck aside, in case we want to reset the current deck.
 
     /**
      * First Method of shuffling the deck. In this method, we:
@@ -49,26 +48,21 @@ angular.module('cardShuffle.controllers', []).controller('cardsController', func
      *      Continue the process until we have reached the end of the deck.
      */
     $scope.shuffle = function () {
-
-        let deck = $scope.cardList; //Variable to hold the current deck.
+        let deck1 = $scope.cardList; //Variable to hold the current deck.
         let finalDeck = []; //Variable that will hold out final, shuffled deck.
-
         //We repeat this process 7 times in order to get a much more varied solution.
         for (let k = 0; k < 7; k++) {
-
             let right = 0; //Index of the right half of the deck.
             let left = 0; //Index of the left half of the deck.
-
             let deckLeft = []; //Array to hold the left half of the deck.
             let deckRight = []; //Array to hold the right half of the deck.
-
             //Put the first half of the array into the left deck.
-            for (let i = 0; i < deck.length/2; i++) {
-                deckLeft.push(deck[i]);
+            for (let i = 0; i < deck1.length/2; i++) {
+                deckLeft.push(deck1[i]);
             }
             //Put the second half of the deck into the right deck.
-            for (let j = deck.length/2; j < deck.length; j++) {
-                deckRight.push(deck[j]);
+            for (let j = deck1.length/2; j < deck1.length; j++) {
+                deckRight.push(deck1[j]);
             }
             //Iterate through both decks, alternating between the two in terms of which deck we must add.
             for (let n = 0; n < 52; n++) {
@@ -82,41 +76,42 @@ angular.module('cardShuffle.controllers', []).controller('cardsController', func
                     left++;
                 }
             }
-            deck = finalDeck;//Set the current deck to the finalDeck so that we can perform this action multiple times.
+            deck1 = finalDeck;//Set the current deck to the finalDeck so that we can perform this action multiple times.
         }
-
         $scope.cardList = finalDeck;//Return the finalDeck as the new deck on the page.
+    };
+
+    /**
+     * Alternative way of shuffling the deck. This method provides much more random results.
+     */
+    $scope.shuffle2 = function () {
+
+        var deck2 = $scope.cardList;//Holds the current cards.
+        var finalDeck = [];
+        /*
+        In this for loop, we swap two random numbers between 0 and i within the deck.
+        */
+        for (let k = 0; k < deck2.length; k++) {
+            finalDeck.push(deck2[k]);
+        }
+        for (let i = 0; i < deck2.length; i++) {
+            var j = Math.floor(Math.random() * i);
+            var temp = finalDeck[i];
+            finalDeck[i] = finalDeck[j];
+            finalDeck[j] = temp;
+
+        }
+        $scope.cardList = finalDeck;
     };
 
     /**
      * Reset the deck to its original order.
      */
-    $scope.reset = function () {
-
-        $scope.cardList = origDeck;
+    $scope.origDeck = function () {
+        console.log(origDeckArr);
+        $scope.cardList = origDeckArr;
     };
 
-    /**
-     * Alternative way of shuffling the deck. This method provides much more random results.
-     *
-     */
-    $scope.shuffle2 = function () {
 
-        let deck = $scope.cardList;//Holds the current cards.
-
-        /*
-        In this for loop, we swap two random numbers between 0 and i within the deck.
-         */
-        for (let i = 0; i < deck.length; i++) {
-            let j = Math.floor(Math.random() * i);
-
-            let temp = deck[i];
-            deck[i] = deck[j];
-            deck[j] = temp;
-
-        }
-
-        $scope.cardList = deck;
-    };
 
 });
