@@ -102,8 +102,11 @@ angular.module('cardShuffle.controllers', []).controller('cardsController', func
      */
     $scope.shuffle2 = function () {
 
-        let deck = $scope.cardList;
+        let deck = $scope.cardList;//Holds the current cards.
 
+        /*
+        In this for loop, we swap two random numbers between 0 and i within the deck.
+         */
         for (let i = 0; i < deck.length; i++) {
             let j = Math.floor(Math.random() * i);
 

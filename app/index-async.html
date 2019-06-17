@@ -15,12 +15,19 @@
   <link rel="stylesheet" href="app.css">
   <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
+
 <body ng-app="cardShuffle" ng-controller="cardsController">
-<button class="btn btn-primary" data-ng-click="shuffle()">SHUFFLE</button>
+
+<h1>Card Shuffle Application</h1>
+
+<button class="btn btn-primary" data-ng-click="shuffle()">SHUFFLE 1</button>
+<button class="btn btn-primary" data-ng-click="shuffle2()">SHUFFLE 2</button>
+<button class="btn btn-primary" data-ng-click="reset()">Reset</button>
+
 <br />
 <table>
   <thead>
-  <tr><th colspan="4">Drivers Championship Standings</th></tr>
+
   </thead>
   <tbody>
   <tr ng-repeat="card in cardList">
