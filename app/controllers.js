@@ -3,8 +3,8 @@
 // Declare app level module which depends on views, and core components
 angular.module('cardShuffle.controllers', []).controller('cardsController', function ($scope) {
     //Create each Suit for the deck
-    var suits = ["hearts", "spades", "diamonds", "clubs"];
-    var deck = [];//Array that will hold the deck
+    let suits = ["hearts", "spades", "diamonds", "clubs"];
+    let deck = [];//Array that will hold the deck
     //In this for loop, we set the initial deck, with the cards in order according to the above list, suits/
     for (let i = 0; i < suits.length; i++) {
         //For each suit, we prepare 13 cards, Ace-King
@@ -39,7 +39,7 @@ angular.module('cardShuffle.controllers', []).controller('cardsController', func
     }
 
     $scope.cardList = deck; //This will be the link that connects the UI to the card list.
-    var origDeckArr = deck;//Keep the original deck aside, in case we want to reset the current deck.
+    let origDeckArr = deck;//Keep the original deck aside, in case we want to reset the current deck.
 
     /**
      * First Method of shuffling the deck. In this method, we:
@@ -83,11 +83,11 @@ angular.module('cardShuffle.controllers', []).controller('cardsController', func
 
     /**
      * Alternative way of shuffling the deck. This method provides much more random results.
+     * The deck is shuffled using the Fisher--Yates (Knuth) Shuffle Algorithm.
      */
     $scope.shuffle2 = function () {
-
-        var deck2 = $scope.cardList;//Holds the current cards.
-        var finalDeck = [];
+        let deck2 = $scope.cardList;//Holds the current cards.
+        let finalDeck = [];
         /*
         In this for loop, we swap two random numbers between 0 and i within the deck.
         */
@@ -95,21 +95,18 @@ angular.module('cardShuffle.controllers', []).controller('cardsController', func
             finalDeck.push(deck2[k]);
         }
         for (let i = 0; i < deck2.length; i++) {
-            var j = Math.floor(Math.random() * i);
-            var temp = finalDeck[i];
+            let j = Math.floor(Math.random() * i);
+            let temp = finalDeck[i];
             finalDeck[i] = finalDeck[j];
             finalDeck[j] = temp;
-
         }
         $scope.cardList = finalDeck;
     };
-
     /**
      * Reset the deck to its original order.
      */
     $scope.origDeck = function () {
-        console.log(origDeckArr);
-        $scope.cardList = origDeckArr;
+        $scope.cardList = origDeckArr; //Set the current cardList to the original Deck Order.
     };
 
 
