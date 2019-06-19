@@ -19,23 +19,17 @@
 
 <h1>Card Shuffle Application</h1>
 
-<button class="btn btn-primary" data-ng-click="shuffle()">SHUFFLE 1</button>
-<button class="btn btn-primary" data-ng-click="shuffle2()">SHUFFLE 2</button>
-<button class="btn btn-primary" data-ng-click="origDeck()">Reset</button>
+<button class="btnShuffle" data-ng-click="shuffle()">SHUFFLE 1</button>
+<button class="btnShuffle" data-ng-click="shuffle2()">SHUFFLE 2</button>
+<button class="btnReset" data-ng-click="origDeck()">Reset</button>
 
 <br />
 <table>
-  <thead>
-
-  </thead>
   <tbody>
   <tr ng-repeat="card in cardList">
-    <td>{{$index + 1}}</td>
     <td>
-      {{card.Card.face}}&nbsp;{{card.Card.suit}} {{card.Card.value}}
       <img class = "card" alt="Card" src={{card.Card.imgSrc}}>
     </td>
-
   </tr>
   </tbody>
 </table>

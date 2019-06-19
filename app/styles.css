@@ -1,6 +1,12 @@
 
 /* app css stylesheet */
 
+
+.title {
+  width: 100%;
+  alignment: center;
+}
+
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -26,9 +32,13 @@
 }
 
 .card {
-  width: 2vw;
-  height: 5vh;
-  padding-left: 3vw;
+  width: 1.63vw;
+  height: 3vw;
+}
+
+.symbol {
+  width: 3vw;
+  height: 3vw;
 }
 
 .btnShuffle {

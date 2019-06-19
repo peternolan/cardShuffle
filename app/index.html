@@ -17,24 +17,21 @@
 
 <body ng-app="cardShuffle" ng-controller="cardsController">
 
-<h1>Card Shuffle Application</h1>
+<h1 class="title">
+  Card Shuffle Application <img class = "symbol" alt="Symbol" src="content/symbols.jpg">
+</h1>
 
-<button class="btnShuffle" data-ng-click="shuffle()">SHUFFLE 1</button>
-<button class="btnShuffle" data-ng-click="shuffle2()">SHUFFLE 2</button>
-<button class="btnReset" data-ng-click="origDeck()">Reset</button>
+<div class="deckArea">
+  <button class="btnShuffle" data-ng-click="shuffle()">SHUFFLE 1</button>
+  <button class="btnShuffle" data-ng-click="shuffle2()">SHUFFLE 2</button>
+  <button class="btnReset" data-ng-click="origDeck()">Reset</button>
 
-<br />
-<table>
-  <tbody>
-  <tr ng-repeat="card in cardList">
-    <td>
-      <img class = "card" alt="Card" src={{card.Card.imgSrc}}>
-    </td>
-
-  </tr>
-  </tbody>
-</table>
-
+  <br />
+  <span class="span3 card" ng-repeat="card in cardList">
+    {{}}
+    <img class = "card" alt="Card" src={{card.Card.imgSrc}}>
+  </span>
+</div>
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular-route/angular-route.js"></script>
 <script src="app.js"></script>
