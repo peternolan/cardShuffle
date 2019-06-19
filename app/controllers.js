@@ -63,7 +63,45 @@ angular.module('cardShuffle.controllers', []).controller('cardsController', func
         $scope.cardList = finalDeck;
     };
 
-
+    /**
+     * Second Method of shuffling the deck. In this method, we:
+     *      Divide the deck into two halves.
+     *      Alternate between adding one card from each deck
+     *      Continue the process until we have reached the end of the deck.
+     */
+    $scope.shuffle2 = function () {
+        let deck1 = $scope.cardList; //Variable to hold the current deck.
+        let finalDeck = []; //Variable that will hold out final, shuffled deck.
+        //We repeat this process 7 times in order to get a much more varied solution.
+        for (let k = 0; k < 7; k++) {
+            let right = 0; //Index of the right half of the deck.
+            let left = 0; //Index of the left half of the deck.
+            let deckLeft = []; //Array to hold the left half of the deck.
+            let deckRight = []; //Array to hold the right half of the deck.
+            //Put the first half of the array into the left deck.
+            for (let i = 0; i < deck1.length/2; i++) {
+                deckLeft.push(deck1[i]);
+            }
+            //Put the second half of the deck into the right deck.
+            for (let j = deck1.length/2; j < deck1.length; j++) {
+                deckRight.push(deck1[j]);
+            }
+            //Iterate through both decks, alternating between the two in terms of which deck we must add.
+            for (let n = 0; n < 52; n++) {
+                //Right deck gets the even indexes. Left gets the odd.
+                if (n % 2 === 0) {
+                    finalDeck[n] = deckRight[right];
+                    right++;
+                }
+                else {
+                    finalDeck[n] = deckLeft[left];
+                    left++;
+                }
+            }
+            deck1 = finalDeck;//Set the current deck to the finalDeck so that we can perform this action multiple times.
+        }
+        $scope.cardList = finalDeck;//Return the finalDeck as the new deck on the page.
+    };
 
     /**
      * Reset the deck to its original order.
