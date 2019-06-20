@@ -4,41 +4,30 @@
 
 .title {
   width: 100%;
-  alignment: center;
+
 }
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
-}
-
-.menu:before {
-  content: "[";
-}
-
-.menu:after {
-  content: "]";
-}
-
-.menu > li {
-  display: inline;
-}
-
-.menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
+.cardIndex {
+  text-align: center;
+  display: table;
 }
 
 .card {
-  width: 1.63vw;
-  height: 3vw;
+  width: 3.4vw;
+  height: 7vw;
+  border: 1px solid black;
+}
+
+.cardArea {
+  float: left;
+  padding: 2px;
 }
 
 .symbol {
   width: 3vw;
   height: 3vw;
+  alignment: center;
+
 }
 
 .btnShuffle {
@@ -55,6 +44,21 @@
 
 }
 
+.btnShufflePress {
+
+  font-size: 12px;
+  margin: 1vw;
+  background: #b3d4aa;
+  font-weight: bold;
+
+  letter-spacing: 2px;
+  padding: 13px 17px;
+  border: none;
+  border-radius: 10px;
+
+}
+
+
 .btnReset {
 
   font-size: 12px;
@@ -66,5 +70,4 @@
   padding: 13px 17px;
   border: none;
   border-radius: 10px;
-
 }
