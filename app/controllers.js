@@ -42,8 +42,8 @@ angular.module('cardShuffle.controllers', []).controller('cardsController', func
     let origDeckArr = deck;//Keep the original deck aside, in case we want to reset the current deck.
 
     /**
-     * Alternative way of shuffling the deck. This method provides much more random results.
-     * The deck is shuffled using the Fisher--Yates (Knuth) Shuffle Algorithm.
+     * This function shuffles the deck on command. The deck is
+     * shuffled using the Fisher--Yates (Knuth) Shuffle Algorithm.
      */
     $scope.shuffle = function () {
         let deck2 = $scope.cardList;//Holds the current cards.
